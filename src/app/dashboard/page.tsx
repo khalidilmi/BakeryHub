@@ -246,9 +246,9 @@ export default function DashboardPage() {
               Bageri Produkt Administration
             </CardTitle>
             {user && (
-              <p className="text-gray-600 mt-2">
-                Velkommen, {user.baker_name} | {user.business_type}
-              </p>
+              <CardTitle className="text-md font-bold text-gray-500">
+                Velkommen, {user.baker_name} | Bager type, {user.business_type}
+              </CardTitle>
             )}
           </div>
         </div>

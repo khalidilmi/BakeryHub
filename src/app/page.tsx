@@ -55,7 +55,7 @@ export default function BakeryAuth() {
     });
 
     if (res.ok) {
-      router.push('/login');
+      router.push('/');
     } else {
       const errorData = await res.json();
       alert(errorData.error);
