@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Cake, User, Lock, Mail, Utensils, Phone, MapPin, Eye, EyeOff } from 'lucide-react'
 
+
 export default function BakeryAuth() {
   const [activeTab, setActiveTab] = useState('login')
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });

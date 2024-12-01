@@ -4,9 +4,9 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import {Button} from "@/components/ui/button"; // Default eksport
+import { Button } from "@/components/ui/button"; // Default eksport
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Named eksport
-import {Input} from "@/components/ui/input"; // Default eksport
+import { Input } from "@/components/ui/input"; // Default eksport
 import { Label } from "@/components/ui/label"; // Named eksport
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"; // Named eksport
 import { Pencil, Trash2, Plus, X } from 'lucide-react';
@@ -37,6 +37,7 @@ export default function DashboardPage() {
   const router = useRouter();
 
   // Log importerede komponenter for fejlfinding
+  /*
   useEffect(() => {
     console.log({
       Button,
@@ -61,13 +62,33 @@ export default function DashboardPage() {
       TooltipProvider,
       TooltipTrigger
     });
-  }, []);
+  }, []);*/
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'include', // Sørg for at cookies sendes med
+      });
+
+      if (res.ok) {
+        router.push('/');
+      } else {
+        const errorData = await res.json();
+        alert(errorData.error || 'Kunne ikke logge ud.');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+      alert('Der opstod en fejl under logud.');
+    }
+  };
+
 
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        router.push('/login');
+        router.push('/');
         return;
       }
 
@@ -84,20 +105,20 @@ export default function DashboardPage() {
           alert(errorData.error || 'Kunne ikke hente brugerdata.');
           if (res.status === 401) {
             // Hvis token er ugyldigt, omdiriger til login
-            router.push('/login');
+            router.push('/');
           }
         }
       } catch (error) {
         console.error('Fetch user error:', error);
         alert('Der opstod en fejl under hentning af brugerdata.');
-        router.push('/login');
+        router.push('/');
       }
     };
 
     const fetchProducts = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        router.push('/login');
+        router.push('/');
         return;
       }
 
@@ -114,7 +135,7 @@ export default function DashboardPage() {
           alert(errorData.error || 'Kunne ikke hente produkter.');
           if (res.status === 401) {
             // Hvis token er ugyldigt, omdiriger til login
-            router.push('/login');
+            router.push('/');
           }
         }
       } catch (error) {
@@ -139,7 +160,7 @@ export default function DashboardPage() {
 
     const token = localStorage.getItem('token');
     if (!token) {
-      router.push('/login');
+      router.push('/');
       return;
     }
 
@@ -168,7 +189,7 @@ export default function DashboardPage() {
 
     const token = localStorage.getItem('token');
     if (!token) {
-      router.push('/login');
+      router.push('/');
       return;
     }
 
@@ -201,7 +222,7 @@ export default function DashboardPage() {
   const handleAdd = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      router.push('/login');
+      router.push('/');
       return;
     }
 
@@ -250,6 +271,12 @@ export default function DashboardPage() {
                 Velkommen, {user.baker_name} | Bager type, {user.business_type}
               </CardTitle>
             )}
+            <div>
+              <Button onClick={handleLogout} className="bg-red-600 hover:bg-red-700">
+                Log ud
+              </Button>
+            </div>
+
           </div>
         </div>
       </CardHeader>
