@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const userProducts = await db
       .select()
       .from(products)
-      .where(eq(products.baker_id, baker.id));
+      .where(eq(products.baker_id, baker!.id));
 
     return NextResponse.json(userProducts, { status: 200 });
   } catch (error) {

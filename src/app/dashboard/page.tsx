@@ -36,33 +36,6 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  // Log importerede komponenter for fejlfinding
-  /*
-  useEffect(() => {
-    console.log({
-      Button,
-      Card,
-      CardContent,
-      CardHeader,
-      CardTitle,
-      Input,
-      Label,
-      Table,
-      TableBody,
-      TableCell,
-      TableHead,
-      TableHeader,
-      TableRow,
-      Pencil,
-      Trash2,
-      Plus,
-      X,
-      Tooltip,
-      TooltipContent,
-      TooltipProvider,
-      TooltipTrigger
-    });
-  }, []);*/
 
   const handleLogout = async () => {
     try {
@@ -268,7 +241,7 @@ export default function DashboardPage() {
             </CardTitle>
             {user && (
               <CardTitle className="text-md font-bold text-gray-500">
-                Velkommen, {user.baker_name} | Bager type, {user.business_type}
+                Velkommen, {user.baker_name!} | Bager type, {user.business_type}
               </CardTitle>
             )}
             <div>

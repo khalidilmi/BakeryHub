@@ -1,4 +1,4 @@
-// lib/auth.ts
+// lib/auth.ts (hvis du vil have én funktion til både user og baker)
 
 import { NextRequest } from 'next/server';
 import jwt from 'jsonwebtoken';
@@ -30,17 +30,26 @@ export async function authenticate(request: NextRequest) {
       return null;
     }
 
-    // Hent bageren baseret på user.id
-    const baker = await db.query.bakers.findFirst({
-      where: eq(bakers.user_id, user.id),
-    });
-
-    if (!baker) {
-      console.log(`Bager ikke fundet for user_id: ${user.id}`);
-      return null;
+    if (decoded.role === 'user') {
+      // Almindelig bruger, returner user og decoded
+      return { user, decoded };
     }
 
-    return { user, baker, decoded };
+    if (decoded.role === 'baker') {
+      // Hvis rolle er baker, hent baker-info
+      const baker = await db.query.bakers.findFirst({
+        where: eq(bakers.user_id, user.id),
+      });
+
+      if (!baker) {
+        console.log(`Bager ikke fundet for user_id: ${user.id}`);
+        return null;
+      }
+
+      return { user, baker, decoded };
+    }
+
+    return null;
   } catch (error) {
     console.error('Authentication error:', error);
     return null;

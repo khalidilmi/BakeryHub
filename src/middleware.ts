@@ -17,4 +17,4 @@ export function middleware(request: NextRequest) {
 // Konfigurer hvilke paths middleware skal køre på
 export const config = {
   matcher: '/dashboard/:path*'
-} 
+}

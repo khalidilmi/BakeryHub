@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS "products" (
 	"created_at" timestamp DEFAULT now(),
 	"updated_at" timestamp DEFAULT now()
 );
+
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "users" (
 	"id" serial PRIMARY KEY NOT NULL,
@@ -30,6 +31,17 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"created_at" timestamp DEFAULT now(),
 	CONSTRAINT "users_email_unique" UNIQUE("email")
 );
+
+CREATE TABLE bakery_hours (
+    id SERIAL PRIMARY KEY,
+    baker_id INT NOT NULL REFERENCES bakers(id) ON DELETE CASCADE,
+    day_of_week VARCHAR(10) NOT NULL, -- Eks. "Monday", "Tuesday"
+    opening_time TIME NOT NULL,
+    closing_time TIME NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "bakers" ADD CONSTRAINT "bakers_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;
@@ -42,3 +54,6 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
+
+
+

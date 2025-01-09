@@ -1,14 +1,14 @@
 // app/api/user/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticate } from '../../../../lib/auth';
+import { authenticateUser } from '../../../../lib/authUser';
 
 export async function GET(request: NextRequest) {
-  const auth = await authenticate(request);
+  const auth = await authenticateUser(request);
   if (!auth) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { user, baker } = auth;
-  return NextResponse.json({ email: user.email, baker_name: baker.baker_name, business_type: baker.business_type }, { status: 200 });
+  const { user } = auth;
+  // Returnér både email og role
+  return NextResponse.json({ email: user.email, role: user.role }, { status: 200 });
 }

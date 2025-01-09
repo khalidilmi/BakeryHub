@@ -30,7 +30,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
         price,
       })
       .where(
-        and(eq(products.id, productId), eq(products.baker_id, baker.id))
+        and(eq(products.id, productId), eq(products.baker_id, baker!.id))
       )
       .returning();
 
@@ -58,7 +58,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     const deletedProduct = await db
       .delete(products)
       .where(
-        and(eq(products.id, productId), eq(products.baker_id, baker.id))
+        and(eq(products.id, productId), eq(products.baker_id, baker!.id))
       )
       .returning();
 
