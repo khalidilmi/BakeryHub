@@ -86,7 +86,7 @@ export default function BakerProducts() {
       </div>
       <div className="grid md:grid-cols-[2fr,1fr] gap-8">
         
-        {/* Produkter Sektion - Større del */}
+        {}
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div>
             <Link 
@@ -129,9 +129,9 @@ export default function BakerProducts() {
           )}
         </div>
 
-        {/* Højre kolonne med Åbningstider og Info */}
+        {}
         <div className="space-y-6">
-          {/* Åbningstider boks */}
+          {}
           <div className="bg-white rounded-lg shadow-lg p-6 h-fit">
             <div className="flex items-center gap-2 mb-4">
               <Clock className="h-5 w-5 text-amber-600" />
@@ -153,7 +153,7 @@ export default function BakerProducts() {
             )}
           </div>
 
-          {/* Ny Info boks */}
+          {}
           <div className="bg-white rounded-lg shadow-lg p-6 h-fit">
             <div className="flex items-center gap-2 mb-4">
               <Store className="h-5 w-5 text-amber-600" />

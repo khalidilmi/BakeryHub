@@ -17,7 +17,7 @@ interface BakeryHoursPublic {
 export default function BakeryHoursAdmin() {
   const [hours, setHours] = useState<BakeryHoursPublic[]>([]);
   const [newHour, setNewHour] = useState<BakeryHoursPublic>({
-    bakerId: 1, // Juster dette til det rigtige bakerId
+    bakerId: 1, 
     dayOfWeek: '',
     openingTime: '',
     closingTime: '',
@@ -26,7 +26,7 @@ export default function BakeryHoursAdmin() {
   useEffect(() => {
     const fetchHours = async () => {
       try {
-        const res = await fetch('/api/bakers/1/hours'); // Juster baker ID dynamisk efter behov
+        const res = await fetch('/api/bakers/1/hours'); 
         if (res.ok) {
           const data = await res.json();
           setHours(data);

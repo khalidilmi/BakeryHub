@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '../../../../../src/db'; // Juster stien til din db-konfiguration
-import { favorites } from '../../../../../src/db/schema/schema'; // Importér `favorites` korrekt
-import { eq, and } from 'drizzle-orm'; // Importér korrekt operator til at matche værdier
-import { authenticateUser } from '../../../../../lib/authUser'; // Autentificér brugeren
-
+import { db } from '../../../../../src/db'; 
+import { favorites } from '../../../../../src/db/schema/schema'; 
+import { eq, and } from 'drizzle-orm'; 
+import { authenticateUser } from '../../../../../lib/authUser'; 
 export async function POST(request: NextRequest) {
   try {
-    // Autentificér brugeren
+
     const auth = await authenticateUser(request);
     console.log('Authenticated user:', auth);
 
@@ -15,7 +14,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    // Træk `bakerId` fra request body
     const { bakerId } = await request.json();
     console.log('Received bakerId:', bakerId);
 
@@ -24,7 +22,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid bakerId' }, { status: 400 });
     }
 
-    // Kontroller, om favoritten allerede findes
     const existingFavorite = await db
       .select()
       .from(favorites)
@@ -37,7 +34,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Already favorited' }, { status: 400 });
     }
 
-    // Indsæt favoritten i databasen
     const inserted = await db.insert(favorites).values({
       userId: auth.user.id,
       bakerId,

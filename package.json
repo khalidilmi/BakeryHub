@@ -20,7 +20,9 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.36.4",
+    "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.460.0",
     "next": "15.0.3",
     "pg": "^8.13.1",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@shadcn/ui": "^0.0.4",
+    "@types/jwt-decode": "^3.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

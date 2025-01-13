@@ -1,4 +1,4 @@
-// app/api/bakers/[id]/products/route.ts
+
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateUser } from '../../../../../../lib/authUser';
@@ -17,4 +17,3 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
   return NextResponse.json(bakerProducts, { status: 200 });
 }
-

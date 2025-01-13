@@ -52,11 +52,10 @@ export default function BakeryAuth() {
         localStorage.setItem('token', data.token);
         document.cookie = `token=${data.token}; path=/`;
 
-        // Redirect baseret på rollen
         if (data.role === 'admin') {
-          router.push('/admin-dashboard'); // Admin-redirect
+          router.push('/admin-dashboard');
         } else if (data.role === 'baker') {
-          router.push('/dashboard'); // Bager-redirect
+          router.push('/dashboard');
         } else {
           alert('Ugyldig rolle.');
         }

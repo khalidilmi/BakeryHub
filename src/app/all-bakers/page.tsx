@@ -41,7 +41,7 @@ export default function AllBakers() {
     try {
       const res = await fetch('/api/logout', {
         method: 'POST',
-        credentials: 'include', // Sørg for at cookies sendes med
+        credentials: 'include', 
       });
 
       if (res.ok) {

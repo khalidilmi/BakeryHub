@@ -7,7 +7,6 @@ import { authenticateUser } from '../../../../../../lib/authUser';
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   const auth = await authenticateUser(request);
 
-  // Tjek om brugeren er admin
   if (!auth || auth.user.role !== 'admin') {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
@@ -19,7 +18,6 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
   }
 
   try {
-    // Tjek om bageren eksisterer
     const bakerExists = await db.query.bakers.findFirst({
       where: eq(bakers.id, bakerId),
     });
@@ -28,7 +26,6 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ error: 'Baker not found' }, { status: 404 });
     }
 
-    // Slet bageren
     await db.delete(bakers).where(eq(bakers.id, bakerId));
 
     return NextResponse.json({ success: true }, { status: 200 });

@@ -1,8 +1,6 @@
-// app/api/register/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '../../../db';
-import { users, bakers } from '../../../db/schema/schema'; // Opdateret sti
+import { users, bakers } from '../../../db/schema/schema';
 import bcrypt from 'bcrypt';
 
 export async function POST(request: NextRequest) {

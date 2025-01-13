@@ -7,7 +7,6 @@ import { authenticateUser } from '../../../../../../lib/authUser';
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   const auth = await authenticateUser(request);
 
-  // Ensure the request is from an admin
   if (!auth || auth.user.role !== 'admin') {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
@@ -19,7 +18,6 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
   }
 
   try {
-    // Check if the user exists
     const userExists = await db.query.users.findFirst({
       where: eq(users.id, userId),
     });
@@ -27,8 +25,6 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     if (!userExists) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
-
-    // Attempt to delete the user
     await db.delete(users).where(eq(users.id, userId));
 
     return NextResponse.json({ success: true }, { status: 200 });

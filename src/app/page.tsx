@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
       <div className="max-w-6xl mx-auto px-4 py-16">
-        {/* Header Section */}
+        {}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Velkommen til Bageri Portalen
@@ -15,9 +15,9 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Login Options */}
+        {}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Bruger Login Card */}
+          {}
           <Link href="/userlogin" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-8 text-center group-hover:-translate-y-1">
               <div className="bg-amber-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-200 transition-colors">
@@ -35,7 +35,7 @@ export default function Home() {
             </div>
           </Link>
 
-          {/* Bager Login Card */}
+          {}
           <Link href="/login" className="group">
             <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-8 text-center group-hover:-translate-y-1">
               <div className="bg-amber-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-200 transition-colors">
@@ -54,7 +54,7 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Footer Section */}
+        {}
         <div className="text-center mt-16">
           <p className="text-gray-600">
             Ny på platformen?{' '}

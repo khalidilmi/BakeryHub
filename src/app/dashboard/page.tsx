@@ -1,17 +1,14 @@
-// app/dashboard/page.tsx
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from "@/components/ui/button"; // Default eksport
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Named eksport
-import { Input } from "@/components/ui/input"; // Default eksport
-import { Label } from "@/components/ui/label"; // Named eksport
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"; // Named eksport
+import { Button } from "@/components/ui/button"; 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label"; 
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"; 
 import { Pencil, Trash2, Plus, X } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"; // Named eksport
-
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 interface Product {
   id: number;
   name: string;
@@ -41,7 +38,7 @@ export default function DashboardPage() {
     try {
       const res = await fetch('/api/logout', {
         method: 'POST',
-        credentials: 'include', // Sørg for at cookies sendes med
+        credentials: 'include',
       });
 
       if (res.ok) {
@@ -77,7 +74,6 @@ export default function DashboardPage() {
           const errorData = await res.json();
           alert(errorData.error || 'Kunne ikke hente brugerdata.');
           if (res.status === 401) {
-            // Hvis token er ugyldigt, omdiriger til login
             router.push('/');
           }
         }
@@ -107,7 +103,6 @@ export default function DashboardPage() {
           const errorData = await res.json();
           alert(errorData.error || 'Kunne ikke hente produkter.');
           if (res.status === 401) {
-            // Hvis token er ugyldigt, omdiriger til login
             router.push('/');
           }
         }
@@ -241,7 +236,7 @@ export default function DashboardPage() {
             </CardTitle>
             {user && (
               <CardTitle className="text-md font-bold text-gray-500">
-                Velkommen, {user.baker_name!} | Bager type, {user.business_type}
+                Velkommen, {user.baker_name} | Bager type, {user.business_type}
               </CardTitle>
             )}
             <div>

@@ -1,5 +1,3 @@
-// src/db/schema/schema.ts
-
 import { pgTable, serial, text, varchar, integer, timestamp,time } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { sql } from 'drizzle-orm';
@@ -14,11 +12,20 @@ export const users = pgTable('users', {
 export const bakeryHours = pgTable('bakery_hours', {
   id: serial('id').primaryKey(),
   bakerId: integer('baker_id').references(() => bakers.id).notNull(),
-  dayOfWeek: text('day_of_week').notNull(), // Eks. "Monday", "Tuesday"
+  dayOfWeek: text('day_of_week').notNull(), 
   openingTime: time('opening_time').notNull(),
   closingTime: time('closing_time').notNull(),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+
+export const ratings = pgTable('ratings', {
+  id: serial('id').primaryKey(),
+  bakerId: integer('baker_id').references(() => bakers.id).notNull(),
+  userId: integer('user_id').references(() => users.id).notNull(),
+  rating: integer('rating').notNull(), 
+  created_at: timestamp('created_at').default(sql`now()`),
 });
 
 export const favorites = pgTable('favorites', {
@@ -62,7 +69,7 @@ export const bakersRelations = relations(bakers, ({ one, many }) => ({
     fields: [bakers.user_id],
     references: [users.id],
   }),
-  products: many(products),
+  products: many(products), 
 }));
 
 export const productsRelations = relations(products, ({ one }) => ({
@@ -71,5 +78,3 @@ export const productsRelations = relations(products, ({ one }) => ({
     references: [bakers.id],
   }),
 }));
-
-

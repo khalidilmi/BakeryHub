@@ -1,5 +1,3 @@
-// app/api/products/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticate } from '../../../../lib/auth';
 import { db } from '../../../db';

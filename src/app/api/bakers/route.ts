@@ -13,21 +13,17 @@ export async function GET(request: NextRequest) {
   }
 
   const { searchParams } = new URL(request.url);
-  const type = searchParams.get('type');  // 'baker' eller 'city'
+  const type = searchParams.get('type');
   const query = searchParams.get('query') || '';
 
   let foundBakers = [];
 
-  // Hvis brugeren har søgt på bagerens navn eksakt
   if (type === 'baker' && query) {
-    // EKSAKT match:
     foundBakers = await db.select().from(bakers).where(eq(bakers.baker_name, query));
   } 
   else if (type === 'city' && query) {
-    // EKSAKT match på by (hvis du har city-kolonnen i DB):
     foundBakers = await db.select().from(bakers).where(eq(bakers.city, query));
   } else {
-    // Ingen filter -> Returner alt
     foundBakers = await db.select().from(bakers);
   }
 

@@ -7,7 +7,7 @@ export default function FavoriteButton({ bakerId }: { bakerId: number }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
   const handleToggleFavorite = async (e: React.MouseEvent) => {
-    e.stopPropagation(); // Forhindrer at klikket bobler op til parent elementer
+    e.stopPropagation();
     try {
       const res = await fetch('/api/favorites/add', {
         method: 'POST',

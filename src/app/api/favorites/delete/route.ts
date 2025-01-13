@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '../../../../db'; // Juster stien til din db-konfiguration
-import { favorites } from '../../../../db/schema/schema'; // Importér din `favorites` tabel
-import { authenticateUser } from '../../../../../lib/authUser'; // Autentificér brugeren
-import { eq, and } from 'drizzle-orm'; // Importér operatorer for betingelser
+import { db } from '../../../../db';
+import { favorites } from '../../../../db/schema/schema'; 
+import { authenticateUser } from '../../../../../lib/authUser'; 
+import { eq, and } from 'drizzle-orm'; 
 
 export async function DELETE(request: NextRequest) {
   try {
@@ -12,13 +12,13 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    const { bakerId } = await request.json(); // Træk bakerId fra request body
+    const { bakerId } = await request.json(); 
 
     if (!bakerId) {
       return NextResponse.json({ error: 'BakerId is required' }, { status: 400 });
     }
 
-    // Slet favoritten fra databasen
+
     const deleted = await db
       .delete(favorites)
       .where(and(eq(favorites.userId, auth.user.id), eq(favorites.bakerId, bakerId)));

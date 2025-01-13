@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    // Hent alle favoritter for den autentificerede bruger
+
     const userFavorites = await db
       .select({
         bakerId: bakers.id,

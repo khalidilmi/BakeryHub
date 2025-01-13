@@ -20,17 +20,17 @@ export default function UserAuth() {
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/user/login', { // Login endpoint
+      const res = await fetch('/api/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginForm),
-        credentials: 'include', // Include cookies
+        credentials: 'include', 
       });
 
       if (res.ok) {
         const data = await res.json();
         alert('Login successful!');
-        router.push('/all-bakers'); // Redirect to bakers page
+        router.push('/all-bakers');
       } else {
         const errorData = await res.json();
         alert(errorData.error || 'Login failed');
@@ -44,7 +44,7 @@ export default function UserAuth() {
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/user/register', { // Register endpoint
+      const res = await fetch('/api/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registerForm),
@@ -53,7 +53,7 @@ export default function UserAuth() {
 
       if (res.ok) {
         alert('Registration successful! Please log in.');
-        setActiveTab('login'); // Switch to login tab after registration
+        setActiveTab('login');
       } else {
         const errorData = await res.json();
         alert(errorData.error || 'Registration failed');
@@ -130,7 +130,7 @@ export default function UserAuth() {
           </Card>
         </TabsContent>
 
-        {/* Register Tab */}
+        {}
         <TabsContent value="register">
           <Card>
             <CardHeader>

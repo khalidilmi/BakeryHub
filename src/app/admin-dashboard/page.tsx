@@ -165,7 +165,7 @@ export default function AdminDashboard() {
           </Button>
         </div>
 
-        {/* Stats Overview */}
+        
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <Card className="bg-amber-50">
             <CardContent className="flex items-center gap-4 p-6">
@@ -206,7 +206,7 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Users Section */}
+        {}
         <Card className="mb-8 shadow-md">
           <CardHeader className="bg-white border-b">
             <CardTitle className="text-xl text-gray-800 flex items-center gap-2">
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
 
-        {/* Bakers Section */}
+        {}
         <Card className="mb-8 shadow-md">
           <CardHeader className="bg-white border-b">
             <CardTitle className="text-xl text-gray-800 flex items-center gap-2">
@@ -302,7 +302,7 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
 
-        {/* Add New Admin Section */}
+        {}
         <Card className="shadow-md">
           <CardHeader className="bg-white border-b">
             <CardTitle className="text-xl text-gray-800 flex items-center gap-2">

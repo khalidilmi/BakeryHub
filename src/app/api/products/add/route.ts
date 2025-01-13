@@ -1,5 +1,3 @@
-// app/api/products/add/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticate } from '../../../../../lib/auth';
 import { db } from '../../../../db';
@@ -17,7 +15,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const [newProduct] = await db.insert(products).values({
-      baker_id: baker.id, // Brug bagerens ID her
+      baker_id: baker!.id,
       name,
       description,
       price,

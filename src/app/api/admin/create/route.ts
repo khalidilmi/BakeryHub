@@ -5,21 +5,21 @@ import bcrypt from 'bcrypt';
 
 export async function POST(request: NextRequest) {
   try {
-    // Læs data fra forespørgselens body
+
     const { email, password, role } = await request.json();
 
     if (!email || !password) {
       return NextResponse.json({ error: 'Email og password er påkrævet.' }, { status: 400 });
     }
 
-    // Hash password
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Indsæt ny bruger i databasen
+
     await db.insert(users).values({
       email,
       password: hashedPassword,
-      role: role || 'admin', // Hvis rolle ikke gives, brug 'admin' som standard
+      role: role || 'admin',
     });
 
     return NextResponse.json({ success: true, message: 'Admin oprettet succesfuldt!' });
